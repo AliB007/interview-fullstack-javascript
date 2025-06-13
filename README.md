@@ -1,44 +1,66 @@
-# Interview for the Position as Fullstack JavaScript Developer
+# 🌆 City Search App
 
-Dear Applicant,
+Ein Fullstack-Projekt mit React + TypeScript im Frontend, Express + Prisma im Backend und PostgreSQL mit Docker Compose.
 
-Thank you once again for applying for the Fullstack Developer position at it-excelsus GmbH. With the following task, we would like to assess your coding skills. The expected timeline for this assignment is **one week**.
+---
 
-Below, you will find three folders. The "frontend" and "backend" folders contain simple initial applications generated using their respective CLI tools. The [`frontend`](./frontend) contains a React.ts application, and the [`backend`](./backend) contains an Express backend application. The [`database`](./database) folder provides an example of what a database could look like when it contains data.
+## 🐳 Voraussetzungen
 
-## What is the task?
+- [Node.js](https://nodejs.org/) installiert
+- [Docker](https://www.docker.com/) & [Docker Compose](https://docs.docker.com/compose/)
+- `npm` oder `yarn`
 
-1. **Frontend:** Replace the existing content with a form that allows users to search for a city and list the results in a formatted list below. You have the freedom to design the application as you see fit.
+---
 
-2. **Backend:** Create an endpoint that returns a list of cities matching the search entry submitted from the frontend. Ideally, this endpoint should return up to five entries per page. Additionally, implement CRUD (Create, Read, Update, Delete) endpoints to manage city data.
+## 🛠️ 1. Datenbank starten mit Docker
 
-3. **Database:** Choose a database type (SQL or NoSQL) that, in your opinion, would be better suited for this use case, and set up a database accordingly.
+```bash
+# .env vorbereiten
+📄 .env Beispiel
 
-**Bonus:** Implement the CRUD functionality in the frontend as well.
+# PostgreSQL Settings
+POSTGRES_USER=admin
+POSTGRES_PASSWORD=admin
+POSTGRES_DB=citydb
+POSTGRES_PORT=5432
 
-## Tips
+# Prisma
+DATABASE_URL="postgresql://admin:admin@localhost:5432/citydb"
+# Server
+PORT=8000
 
-- Ensure that your code is functional.
-- Handle potential edge cases.
-- Strive for a solution you are satisfied with.
-- Interested in testing? This could be an excellent opportunity to learn!
-- Keep track of your progress through git commits.
+# PostgreSQL starten
+docker-compose up -d
+📦 Die Datenbank läuft dann unter localhost:5432 mit den ENV-Werten aus .env.
 
-## Are you finished?
 
-You can submit the completed assignment in either of two ways:
 
-1. **GitHub Repository:** Fork our repository, complete the task and send us the link to your GitHub repository.
-2. **Archive Submission:** Remove the `node_modules` folders from both applications, pack the directories into an archive, and send it to us via [email](mailto:recruiting@it-excelsus.de).
+# Abhängigkeiten installieren
+npm install
 
-## Need assistance?
+🧩 2. Backend starten
 
-For additional help, please refer to the documentation:
-- For React, consult the [React docs](https://react.dev/learn) page.
-- For ExpressJS, check out the [Express docs](https://devdocs.io/express/) page.
+cd backend
+npx ts-node src/index.ts
 
-We look forward to reviewing your submission.
+# Prisma generieren & Datenbank migrieren
+npx prisma generate
+npx prisma migrate dev --name init
 
-Best regards,
+# Seed (fakultativ)
+npm run seed
 
-it-excelsus GmbH
+🧩 2. Frontend starten
+# Abhängigkeiten installieren
+npm install
+npm run dev
+
+
+
+✅ ToDo 
+
+    Validierung verbessern
+
+    UI
+
+    Unit-Tests & e2e-Tests
