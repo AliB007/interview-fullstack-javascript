@@ -38,18 +38,56 @@ function App() {
   };
 
   return (
-    <div style={{ padding: "2rem" }}>
-      <h1>City Search</h1>
+  <div style={styles.container}>
+    <div style={styles.card}>
+      <h1 style={styles.heading}>City Search</h1>
+
       <input
         type="text"
         value={search}
         placeholder="Search city..."
         onChange={(e) => setSearch(e.target.value)}
+        style={styles.searchInput}
       />
+
       <CityForm onCreate={handleCreate} />
       <CityList cities={cities} onUpdate={handleUpdate} onDelete={handleDelete} />
     </div>
-  );
+  </div>
+);
 }
+
+
+const styles = {
+  container: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "flex-start",
+    minHeight: "100vh",
+    backgroundColor: "#f5f5f5",
+    padding: "2rem",
+  },
+  card: {
+    backgroundColor: "white",
+    padding: "2rem",
+    borderRadius: "12px",
+    boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
+    width: "100%",
+    maxWidth: "600px",
+  },
+  heading: {
+    textAlign: "center",
+    marginBottom: "1.5rem",
+    color: "#333",
+  },
+  searchInput: {
+    width: "100%",
+    padding: "0.75rem",
+    fontSize: "1rem",
+    border: "1px solid #ccc",
+    borderRadius: "6px",
+    marginBottom: "1.5rem",
+  },
+};
 
 export default App;
